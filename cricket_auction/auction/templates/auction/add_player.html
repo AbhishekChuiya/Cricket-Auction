@@ -1,0 +1,8 @@
+<h1>Add Player to {{ team.name }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add Player</button>
+</form>
+<a href="{% url 'owner_dashboard' %}">Back to Dashboard</a>

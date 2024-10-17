@@ -1,0 +1,244 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ team.name }}</title>
+    <link rel="icon" href=
+    "{% static 'auction/images/vishakha-logo-logo only.png' %}"
+            type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        body {
+    font-family: 'Roboto', sans-serif;
+    background: radial-gradient(circle, #1a1a1a, #0a0a0a);
+    color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+    line-height: 1.6;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+h1 {
+    color: #ff2828;
+    font-size: 3.5em;
+    margin: 0;
+    /* text-shadow: 0 0 15px rgba(189, 185, 168, 0.6); */
+    text-shadow: 1px 1px 1px red, 0 0 1em blue, 0 0 0.2em blue;
+}
+
+.team {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid {{ team.color }};
+    border-radius: 15px;
+    margin-bottom: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s, box-shadow 0.1s;
+    font-weight: 600; /* Normal weight */
+}
+
+.team:hover {
+    transform: scale(1.01);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+    font-weight: 600; /* Ensure it stays consistent */
+}
+
+.team-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.team h3 {
+    margin: 0;
+    font-size: 45px; /* Removed redundant font-size declaration */
+    color: {{ team.secondary_color }};
+    font-weight: 600; /* Ensure h3 has consistent weight */
+}
+
+.balance {
+    font-weight: 600; /* Ensure balance font weight */
+    color: #76ff03;
+    font-size: 35px;
+}
+
+.player-list {
+    margin-top: 15px;
+    padding: 0;
+    list-style-type: none;
+}
+
+.player {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background-color: #333;
+    color: #fff;
+    font-weight: 600; /* Normal weight */
+    transition: background 0.3s, transform 0.1s;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.player:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    font-weight: 600; /* Ensure it stays consistent */
+}
+
+.player span {
+    font-size: 20px; /* Set to single declaration */
+    font-weight: 600; /* Ensure consistent weight */
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.2em;
+    color: #bbb;
+}
+
+.cricket-icon {
+    font-size: 5em;
+    color: #ffcc00;
+    text-align: center;
+    margin: 10px 0;
+    text-shadow: 0 0 15px rgba(255, 204, 0, 0.6);
+}
+
+.price-container {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    font-size: 14px; 
+}
+
+.base-price,
+.sold-price {
+    margin: 0;
+    color: #fff;
+    display: block;
+}
+
+.cricket-gear {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+}
+
+.gear {
+    text-align: center;
+    font-size: 2em;
+    color: #ffcc00;
+    transition: transform 0.3s;
+}
+
+.gear:hover {
+    transform: scale(1.1);
+}
+
+.player-details {
+    display: flex;
+    align-items: center;
+}
+
+.player-text {
+    line-height: 40px;
+}
+
+.player-img {
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.price-container {
+    text-align: right;
+    font-size: 14px;
+}
+
+.base-price,
+.sold-price {
+    display: block;
+}
+
+    </style>
+</head>
+<body>
+    <img src="{% static 'auction/images/vishakha-logo-logo only.png' %}" alt="Team Logo" style="width: 80px; height: auto;">
+    <img src="{% static 'auction/images/vishakha-logo-text only.png' %}" alt="Team Logo" style="width: 200px; height: auto; margin-right: 20px; margin-bottom: 13px; filter: invert(10);">
+    <!-- <img src="{% static 'auction/images/Vishakha Logo.jpg' %}" alt="Description of image"> -->
+    <header>
+        <div class="header-container" style="display: flex; align-items: center; justify-content: center;">
+            
+            <h1 style="margin: 0; ">Welcome to the Vishakha Cricket Auction!</h1>
+            <span class="material-icons" style="font-size: 4em; color: #ffcc00; margin-left: 20px;">
+                sports_cricket
+            </span>
+        </div>
+    </header>
+
+    <main>
+
+
+        <div class="team">
+            <div class="team-header">
+                <h3 >Team: {{ team.name }}</h3>
+                <div class="balance">Balance: {{ team.balance }}</div>
+            </div>
+
+            <div class="owners">
+                <div class="greeting">
+                    <p style="font-size: 20px;">
+                        Hello, <b>{{ team.owner1.name }}{% if team.owner2.name != "NA" %} and {{ team.owner2.name }}{% endif %}.<br></b> Best of luck with your team!
+                    </p>
+                </div>
+            </div>
+
+            <div class="player-list">
+                <center><strong style="font-size: 25px;">Players</strong></center>
+                <ul>
+                    {% for player in players %}
+                    <li class="player">
+                        <div class="player-details">
+                            <span class="player-text">{{ forloop.counter }}. {{ player.name }}</span>
+                            <img src="{{ player.player_type.image.url }}" alt="{{ player.name }}" class="player-img" style="filter: invert(10); margin-left: 15px;">
+                        </div>
+                        <div class="price-container">
+                            <span class="base-price">Base Price: {{ player.base_price }}</span>
+                            <span class="sold-price">Sold Price: {{ player.sold_price }}</span>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+
+        <div class="cricket-gear">
+            <div class="gear"><i class="fas fa-bat"></i></div>
+            <div class="gear"><i class="fas fa-ball"></i></div>
+            <div class="gear"><i class="fas fa-user-cricket"></i></div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Enjoy the auction and may the best team win!</p>
+    </footer>
+</body>
+</html>

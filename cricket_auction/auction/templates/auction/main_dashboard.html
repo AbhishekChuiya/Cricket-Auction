@@ -1,0 +1,375 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishakha Cricket Auction</title>
+    <link rel="icon" href=
+    "{% static 'auction/images/vishakha-logo-logo only.png' %}"
+            type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f8f3; /* Soft Light Blue */
+        }
+
+        h1 {
+            color: #ff2828;
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 0 0 15px rgba(189, 185, 168, 0.6);
+        }
+
+        h2 {
+            color: #34495e; /* Darker Gray Blue */
+            margin: 20px 0 10px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            max-width: 2500px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff; /* White */
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .teams {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            width: 100%;
+        }
+
+        .team-card {
+            background-color: #33ff00; /* Light Blue */
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .players {
+            background-color: #af9f9d; /* Light Green */
+            padding: 6px;
+            border-radius: 30px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: #ffffff; /* White */
+            margin: 8px 10px;
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: background 0.3s;
+        }
+
+        li:hover {
+            background: #f1f1f1; /* Light Gray */
+        }
+
+        strong {
+            display: block;
+            margin-bottom: 5px;
+            color: #2c3e50; /* Dark Blue */
+        }
+
+        .recent-auctions {
+            color: #e74c3c; /* Bright Red */
+            margin-top: 20px;
+        }
+
+        .section.players {
+            text-align: center;
+            margin: 30px 0;
+            background-color: #e6e8eb; /* Light background for the section */
+            padding: 20px;
+            border-radius: 15px; /* Rounded corners for the section */
+        }
+
+        .title {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .player-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* Space between cards */
+        }
+
+        .player-card {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 280px; /* Slightly wider cards */
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .player-card:hover {
+            transform: translateY(-3px); /* Subtle lift effect */
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+        }
+
+        .player-name {
+            font-size: 1.8em;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .base-price {
+            font-size: 1.2em;
+            color: #28a745; /* Green for base price */
+            margin-bottom: 15px; /* Space below price */
+        }
+
+        .players {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .left-column, .right-column {
+            width: 50%;
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 30px;
+            color: #bbb;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- <img src="Bowler.png" alt="afawsdfw">
+
+    <div style="text-align: center; margin: 40px auto; max-width: 600px; position: relative; background: #ffffff; border-radius: 15px; padding: 40px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);">
+
+        <div style="display: flex; align-items: center; justify-content: center; color: #333; padding: 20px;">
+            <img src="Vishakha Logo.jpg" alt="Cricket" style="width: 100px; height: auto; margin-right: 20px;">
+            
+            <div>
+                <h2 style="font-family: 'Helvetica', sans-serif; font-size: 2.5em; margin: 0; color: #28a745;">
+                    Cricket Auction
+                </h2>
+                <h3 style="color: #6c757d; font-size: 1.4em; margin: 0; font-weight: 300;">
+                    <em>Bid. Play. Win!</em>
+                </h3>
+            </div>
+        </div>
+    
+        <style>
+            img:hover {
+                transform: scale(1.1);
+                transition: transform 0.3s ease;
+            }
+        </style>
+    </div>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica&display=swap" rel="stylesheet"> -->
+    
+
+
+
+
+
+    <!-- <div style="text-align: center; margin: 40px auto; max-width: 600px; position: relative; background: #ffffff; border-radius: 15px; padding: 40px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);">
+
+        <div style="color: #333; padding: 20px;">
+            <h1 style="font-family: 'Helvetica', sans-serif; font-size: 5em; margin: 0; color: #007bff;">
+                🏏
+            </h1>
+            <h2 style="font-family: 'Helvetica', sans-serif; font-size: 2.5em; margin: 20px 0 10px; color: #28a745;">
+                Cricket Auction
+            </h2>
+            <h3 style="color: #6c757d; font-size: 1.4em; margin: 0; font-weight: 300;">
+                <em>Bid. Play. Win!</em>
+            </h3>
+
+    
+        </div>
+    
+        <style>
+            h1:hover {
+                transform: scale(1.1);
+                transition: transform 0.3s ease;
+            }
+        </style>
+    </div>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Helvetica&display=swap" rel="stylesheet"> -->
+    
+    
+    <!-- <h1>Vishakha Cricket Auction</h1> -->
+    <!-- <img src="{% static 'auction/images/Vishakha Logo.jpg' %}" alt="Description of image"> -->
+    <header>
+        <div class="header-container" style="display: flex; align-items: center; justify-content: space-between;">
+            <img src="{% static 'auction/images/vishakha-logo.png' %}" alt="Team Logo" style="width: 342px; height: auto;">
+    
+            <h1 style="margin: 0; text-align: center;">🏏 Welcome to the Vishakha Cricket Auction! 🏆</h1>
+    
+            <span class="material-icons" style="font-size: 4em; color: #ff2828; margin-left: 20px;">
+                sports_cricket
+            </span>
+        </div>
+    </header>
+    
+    
+    
+    
+    
+   
+    
+    
+<br>
+    <div class="teams">
+        {% for team in teams %}
+            <div class="team-card" style="background-color: {{ team.color }};">
+
+
+                <!-- <div style="text-align: center; color:white"> -->
+
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+
+                        <div style="color:{{ team.font_color }}; 
+                        font-size: 25px; 
+                        text-align: left;">
+                           <b> {{ team.name }}</b>     <!-- Team Name -->
+                        </div>
+
+
+                        <div style=
+                            "color: {{ team.font_color }}; 
+                            font-size: 25px; text-align: right; 
+                            border: 1px solid {{ team.font_color }}; 
+                            border-radius: 10px; 
+                            padding: 5px; 
+                            box-shadow: 0 0 18px rgba(0, 0, 0, 1.2); 
+                            transition: transform 0.3s;">
+         
+                        <b> Balance: {{ team.balance }}</b>    <!-- Team Balance -->
+                        </div>
+
+                    </div>
+                    <br>
+                <!-- </div> -->
+
+
+                <div class="players" style="background-color: {{ team.secondary_color }};">
+                    {% with players as all_players %}
+                    {% with all_players|length as total_players %}
+                        {% for team_key, details in team_players.items %}
+                            {% if team_key == team %}
+                                <div class="left-column">
+                                    <ul>
+                                        {% for player in all_players %}
+                                            {% if player.team == team and player.count <= 6 %}
+                                            <!-- <p> {{ player.player_type.image.url }} </p> -->
+
+                                            <center>
+                                                <li style="display: flex; justify-content: space-between; align-items: center; font-size: 20px; padding: 14px; list-style: none;">
+                                                    <div style="text-align: left; font-size: 23px;"> <!-- Removed margin -->
+                                                        <b>{{ player.name }}</b><br>
+                                                        Price: <b>{{ player.sold_price }}</b>
+                                                    </div>
+                                                    <!-- <img src="{{ player.player_type.image.url }}" alt="{{ player.name }}'s image" /> -->
+
+                                                    <div style="margin-left: 10px;"> <!-- Added margin to left div -->
+                                                        <img src="{{ player.player_type.image.url }}" alt="{{ player.name }}" style="width: 40px; height: 40px;">
+                                                    </div>
+
+                                                </li>
+                                            </center>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                <div class="right-column">
+                                    <ul>
+                                        {% for player in all_players %}
+                                            {% if player.team == team and player.count > 6 %}
+                                            <center>
+                                                <li style="display: flex; justify-content: space-between; align-items: center; font-size: 20px; padding: 14px; list-style: none;">
+                                                    <div style="text-align: left; font-size: 23px;"> <!-- Removed margin -->
+                                                        <b>{{ player.name }}</b><br>
+                                                        Price: <b>{{ player.sold_price }}</b>
+                                                    </div>
+                                                    <!-- <img src="{{ player.player_type.image.url }}" alt="{{ player.name }}'s image" /> -->
+
+                                                    <div style="margin-left: 10px;"> <!-- Added margin to left div -->
+                                                        <img src="{{ player.player_type.image.url }}" alt="{{ player.name }}" style="width: 40px; height: 40px;">
+                                                    </div>
+                                                </li>
+                                            </center>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    {% endwith %}
+                    {% endwith %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    
+
+
+
+
+
+<!-- 
+    <div class="section players">
+        <h2 class="title">Current Players</h2>
+        <div class="player-container">
+            {% for player in players %}
+                {% if not player.is_sold %}
+                    <div class="player-card">
+                        <h3 class="player-name">{{ player.name }}</h3>
+                        <p class="base-price">Base Price: <strong>{{ player.base_price }}</strong></p>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div> -->
+
+    <!-- <h2>Recent Auctions</h2>
+    <ul class="recent-auctions">
+        {% for auction in recent_auctions %}
+            <li>{{ auction.player.name }} - {{ auction.team.name }}: {{ auction.bid_amount }}</li>
+        {% endfor %}
+    </ul> -->
+    <footer>
+        <p>    Get ready to witness legends in the making. Let the bidding wars begin!</p>
+    </footer>
+</body>
+</html>
